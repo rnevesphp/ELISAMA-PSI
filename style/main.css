@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap');
+
+:root { 
+    --main-font: 'Momo Trust Display' ; 
+    --secondary-font: 'Vend Sans'; 
+
+
+}
+
+h1 { 
+    font-family: var(--main-font);
+}
+
+h2 {
+    font-family: var(--secondary-font);
+}
