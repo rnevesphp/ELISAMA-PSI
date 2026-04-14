@@ -528,10 +528,4 @@ body {
     color: var(--accent);
 }
 
-/* Bloqueio de Scroll no Body enquanto o Beta estiver ativo */
-body {
-    overflow: hidden;
-    /* Impede que o usuário navegue no conteúdo de baixo */
-}
-
 /* =============================COMING SOON===================================================*/
