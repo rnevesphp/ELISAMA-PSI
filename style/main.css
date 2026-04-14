@@ -1,16 +1,537 @@
-@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap');
-
-:root { 
-    --main-font: 'Momo Trust Display' ; 
-    --secondary-font: 'Vend Sans'; 
-
-
+/* --- TOKENS --- */
+:root {
+    --primary: #3f72a5;
+    --accent: #C5A368;
+    --bg: #F9F7F2;
+    --white: #FFFFFF;
+    --font-title: 'Funnel Display', sans-serif;
+    --font-alt: 'Italiana', serif;
+    --font-body: 'Vend Sans', sans-serif;
 }
 
-h1 { 
-    font-family: var(--main-font);
+/* --- RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h2 {
-    font-family: var(--secondary-font);
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg);
+    color: var(--primary);
+    overflow-x: hidden;
 }
+
+.container {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- HEADER MOBILE (FLEXBOX) --- */
+.main-header {
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+}
+
+.nav-container {
+    flex-direction: row;
+    /* Alinha logo e hamburguer na mesma linha */
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    /* Permite que o menu dropdown "caia" para a linha de baixo */
+}
+
+.logo {
+    text-decoration: none;
+    flex-shrink: 0;
+    /* Impede a logo de ser espremida */
+}
+
+.logo-text .name {
+    display: block;
+    font-family: var(--font-title);
+    font-weight: 800;
+    color: var(--white);
+    font-size: 1.1rem;
+}
+
+.logo-text .crp {
+    font-size: 0.6rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Hamburguer Icon */
+.hamburguer-btn {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.hamburguer-btn .line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--white);
+    transition: 0.3s;
+}
+
+/* Dropdown Logic */
+.menu-check {
+    display: none;
+}
+
+.main-nav {
+    flex-basis: 100%;
+    /* Ocupa 100% da largura ao quebrar linha */
+    display: none;
+    /* Escondido no celular por padrão */
+    background: rgba(54, 116, 179, 0.98);
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.nav-list li a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 15px 0;
+    display: block;
+    font-family: var(--font-title);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Quando o checkbox é marcado, exibe o nav */
+.menu-check:checked~.main-nav {
+    display: block;
+}
+
+/* --- HERO SECTION MOBILE --- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(rgba(11, 83, 156, 0.85), rgba(30, 43, 56, 0.85)),
+        url('https://images.unsplash.com/photo-1579165466541-71ae2243e825?q=80&w=1000');
+    /* Exemplo placeholder */
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero-wrapper {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tagline {
+    font-family: var(--font-alt);
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+.hero-title {
+    font-family: var(--font-title);
+    color: var(--white);
+    font-size: 2.2rem;
+    line-height: 1.1;
+    flex-shrink: 1;
+}
+
+.hero-description {
+    color: var(--white);
+    opacity: 0.9;
+    font-size: 1rem;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: var(--white);
+    text-decoration: none;
+    padding: 18px 30px;
+    border-radius: 50px;
+    font-family: var(--font-title);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    display: inline-block;
+    align-self: center;
+    /* Centraliza o botão dentro da flex column */
+}
+
+/* --- SHAPE --- */
+.shape-divider {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+}
+
+.shape-divider svg {
+    width: 100%;
+    height: 50px;
+}
+
+.shape-fill {
+    fill: var(--bg);
+}
+
+/* --- FLOAT --- */
+.wa-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+}
+
+/* ==========================================================================
+   ESTILIZAÇÃO GLASSMORPHISM (REUTILIZÁVEL)
+   ========================================================================== */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* --- Atualização do Header para Glassmorphism --- */
+.main-nav {
+    background: rgba(30, 43, 56, 0.85);
+    /* Glass dark */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================================
+   SEÇÃO ÁREAS DE ATUAÇÃO (MOBILE-FIRST)
+   ========================================================================== */
+.areas {
+    padding: 80px 0;
+    background-color: var(--bg);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.section-title {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.section-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+/* Grid de Cards com Flexbox */
+.grid-areas {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que os cards quebrem linha no mobile */
+    gap: 20px;
+    justify-content: center;
+}
+
+.card-reveal {
+    flex: 1 1 100%;
+    /* No mobile, ocupa 100% da largura */
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    /* Estado inicial para animação de entrada */
+    opacity: 1;
+    /* Para o mobile, deixamos visível por padrão, ou use JS para toggle */
+}
+
+/* Efeito de Hover (Toque ou Mouse) */
+.card-reveal:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(197, 163, 104, 0.15);
+    border-color: var(--accent);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+.card-reveal h3 {
+    font-family: var(--font-title);
+    color: var(--primary);
+    font-size: 1.3rem;
+}
+
+.card-reveal p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-body);
+}
+
+/* ==========================================================================
+   CTA BANNER (O GRANDE CARD)
+   ========================================================================== */
+.cta-banner-wrapper {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.cta-banner {
+    background: var(--primary);
+    /* Azul escuro da imagem */
+    padding: 40px 25px;
+    border-radius: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Toque de Glassmorphism no Card Escuro */
+.cta-banner::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+}
+
+.cta-banner h3 {
+    color: var(--white);
+    font-size: 1.5rem;
+    line-height: 1.3;
+    z-index: 1;
+}
+
+.cta-banner p {
+    font-size: 1rem;
+    opacity: 0.9;
+    max-width: 500px;
+    z-index: 1;
+}
+
+.cta-banner .btn-primary {
+    align-self: stretch;
+    /* Botão largo no mobile */
+    margin-top: 10px;
+    z-index: 1;
+}
+
+/* Animação suave para os cards aparecerem (Simulação) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplicando animação (você pode adicionar uma classe via JS ao scrollar) */
+.card-animated {
+    animation: fadeInUp 0.8s forwards;
+}
+
+
+
+
+
+
+
+/* =============================COMING SOON===================================================*/
+/* ==========================================================================
+   OVERLAY EM BREVE (MOBILE-FIRST)
+   ========================================================================== */
+.sobreposicao {
+    position: fixed;
+    /* Fixa sobre toda a tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    /* Garante que fique acima de tudo, inclusive do header e WhatsApp */
+
+    /* Flexbox para centralizar o card na tela */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* O "segredo" do Glassmorphism Opaco */
+    background: rgba(30, 43, 56, 0.4);
+    /* Cor base escura semi-transparente */
+    backdrop-filter: blur(25px) saturate(180%);
+    /* Desfoque intenso para esconder o fundo */
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+}
+
+.container-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.embreve-card {
+    width: 90%;
+    /* Mobile-first: quase toda a largura */
+    max-width: 450px;
+    /* Limite para tablets e desktops futuros */
+    padding: 40px 20px;
+    border-radius: 30px;
+    text-align: center;
+
+    /* Glassmorphism no Card */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.embreve-card h1 {
+    font-family: var(--font-title);
+    color: var(--white);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.status-text {
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   REDES SOCIAIS (FLEXBOX)
+   ========================================================================== */
+.redes-sociais {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.social-label {
+    color: var(--accent);
+    font-family: var(--font-alt);
+    font-size: 1.1rem;
+}
+
+.social-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    /* Mobile: empilha badge e link */
+    align-items: center;
+    gap: 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.social-card:hover {
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.badge {
+    background: var(--accent);
+    color: var(--white);
+    font-size: 0.7rem;
+    padding: 4px 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.link-instagram a {
+    color: var(--white);
+    text-decoration: none;
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.link-instagram a:hover {
+    color: var(--accent);
+}
+
+/* Bloqueio de Scroll no Body enquanto o Beta estiver ativo */
+body {
+    overflow: hidden;
+    /* Impede que o usuário navegue no conteúdo de baixo */
+}
+
+/* =============================COMING SOON===================================================*/
