@@ -390,6 +390,373 @@ body {
     animation: fadeInUp 0.8s forwards;
 }
 
+/* ==========================================================================
+   SEÇÃO SOBRE & ABORDAGEM (MOBILE-FIRST)
+   ========================================================================== */
+.sobre-abordagem {
+    padding: 60px 0;
+    background-color: var(--bg);
+}
+
+.sobre-abordagem .container {
+    display: flex;
+    flex-direction: column;
+    /* Empilhamento vertical padrão mobile */
+    gap: 40px;
+}
+
+/* Blocos de Informação */
+.info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: var(--white);
+    padding: 30px 20px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.badge-glass {
+    align-self: flex-start;
+    padding: 6px 15px;
+    background: rgba(30, 43, 56, 0.05);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--accent);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+}
+
+.title-primary {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    color: var(--primary);
+}
+
+.text-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-body);
+}
+
+.text-highlight {
+    font-weight: 700;
+    color: var(--primary);
+    border-left: 3px solid var(--accent);
+    padding-left: 15px;
+    margin-top: 10px;
+}
+
+/* Invólucro da Imagem */
+.image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.img-profile {
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+    object-fit: cover;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   AJUSTES DE FLEXBOX (PROPRIEDADES SOLICITADAS)
+   ========================================================================== */
+.info-block,
+.image-wrapper {
+    flex-grow: 0;
+    flex-shrink: 1;
+    /* Permite que o bloco se ajuste ao viewport */
+    flex-basis: auto;
+}
+
+/* Efeito Hover nos blocos para Mobile (Toque) */
+.info-block:active {
+    transform: scale(0.98);
+    transition: transform 0.2s;
+}
+
+/* ==========================================================================
+   BASE MOBILE-FIRST (1 Coluna)
+   ========================================================================== */
+.beneficios {
+    padding: 60px 0;
+    background-color: var(--bg);
+}
+
+.beneficios .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.beneficios-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* Ordem Mobile: Cards Topo -> Imagem -> Cards Baixo */
+    gap: 20px;
+}
+
+.beneficios-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.central-illustration {
+    order: 2;
+    /* Garante que no mobile a imagem fique no meio (entre os grupos) */
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.central-illustration img {
+    max-width: 80%;
+    height: auto;
+}
+
+.benefit-card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+    flex-shrink: 1;
+}
+
+.check-icon {
+    width: 30px;
+    height: 30px;
+    background: var(--accent);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.8rem;
+}
+
+.cta-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* ==========================================================================
+   VERSÃO TABLET (2 Colunas com Imagem no Fundo)
+   ========================================================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .beneficios-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* 2 colunas */
+        gap: 25px;
+        position: relative;
+    }
+
+    .central-illustration {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        opacity: 0.15;
+        /* Efeito suave no fundo */
+        pointer-events: none;
+    }
+
+    .beneficios-group {
+        z-index: 2;
+    }
+}
+
+/* ==========================================================================
+   VERSÃO DESKTOP (Grid Circular / Redor da Imagem)
+   ========================================================================== */
+@media (min-width: 1024px) {
+    .beneficios-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 400px 1fr;
+        /* Colunas para Cards Esq | Imagem | Cards Dir */
+        align-items: center;
+        gap: 30px;
+    }
+
+    .central-illustration {
+        order: unset;
+        grid-column: 2;
+        grid-row: 1;
+        z-index: 1;
+    }
+
+    .group-top {
+        grid-column: 1;
+        text-align: right;
+    }
+
+    .group-bottom {
+        grid-column: 3;
+    }
+
+    /* Inverte a ordem do ícone nos cards da esquerda para um visual premium */
+    .group-top .benefit-card {
+        flex-direction: row-reverse;
+    }
+
+    .benefit-card {
+        transition: transform 0.3s ease;
+    }
+
+    .benefit-card:hover {
+        transform: scale(1.05);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
