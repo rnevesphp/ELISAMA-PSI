@@ -1,0 +1,391 @@
+/* ==========================================================================
+   1. TOKENS & RESET
+   ========================================================================== */
+:root {
+    --primary: #3f72a5;
+    --primary-dark: #1a2b3c;
+    --accent: #C5A368;
+    --accent-dark: #a47444;
+    --bg: #F9F7F2;
+    --white: #FFFFFF;
+    --font-title: 'Funnel Display', sans-serif;
+    --font-alt: 'Italiana', serif;
+    --font-body: 'Vend Sans', sans-serif;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg);
+    color: var(--primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ==========================================================================
+   2. CLASSES UTILITÁRIAS (GENERICS) - Otimização de Performance
+   ========================================================================== */
+/* Flexbox Core */
+.df {
+    display: flex;
+}
+
+.f-col {
+    flex-direction: column;
+}
+
+.f-row {
+    flex-direction: row;
+}
+
+.f-wrap {
+    flex-wrap: wrap;
+}
+
+/* Alinhamentos */
+.aic {
+    align-items: center;
+}
+
+.aif {
+    align-items: flex-start;
+}
+
+.jcc {
+    justify-content: center;
+}
+
+.jcb {
+    justify-content: space-between;
+}
+
+.jca {
+    justify-content: space-around;
+}
+
+/* Containers & Espaçamento */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.container-narrow {
+    max-width: 480px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.section-pd {
+    padding: 80px 0;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.gap-20 {
+    gap: 20px;
+}
+
+.gap-30 {
+    gap: 30px;
+}
+
+/* Tipografia & Cores */
+.t-center {
+    text-align: center;
+}
+
+.t-white {
+    color: var(--white);
+}
+
+.t-accent {
+    color: var(--accent);
+}
+
+.font-alt {
+    font-family: var(--font-alt);
+}
+
+.font-title {
+    font-family: var(--font-title);
+}
+
+.upper {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Efeitos Reutilizáveis */
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.shadow {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   3. COMPONENTES (ELEMENTOS ÚNICOS)
+   ========================================================================= */
+
+/* Botões */
+.btn-base {
+    padding: 18px 35px;
+    border-radius: 50px;
+    font-family: var(--font-title);
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.btn-gold {
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: var(--white);
+}
+
+.btn-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(197, 163, 104, 0.3);
+}
+
+/* Header & Nav */
+.main-header {
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+}
+
+.main-nav {
+    background: rgba(30, 43, 56, 0.95);
+    border-radius: 10px;
+    display: none;
+    margin-top: 20px;
+}
+
+.menu-check:checked~.main-nav {
+    display: block;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 20px;
+}
+
+.nav-list li a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px 0;
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hero */
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(rgba(11, 83, 156, 0.8), rgba(30, 43, 56, 0.85)), url('sua-imagem.jpg') center/cover;
+    position: relative;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    line-height: 1.1;
+}
+
+/* Timeline (Agendamento) */
+.timeline {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--primary);
+    opacity: 0.2;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 40px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 3px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background: var(--white);
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* Contato & Info Cards */
+.contato {
+    background-color: var(--primary-dark);
+}
+
+.info-card-v2 {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 20px;
+    transition: var(--transition);
+}
+
+.info-card-v2:hover {
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Floats */
+.wa-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25D366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    z-index: 1001;
+}
+
+/* ==========================================================================
+   4. RESPONSIVIDADE (TABLETS & DESKTOP)
+   ========================================================================== */
+
+/* TABLETS (768px) */
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .grid-areas {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .contact-info-cards-v2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+/* DESKTOP (1024px+) */
+@media (min-width: 1024px) {
+
+    /* Header Desktop */
+    .hamburguer-btn {
+        display: none;
+    }
+
+    .main-nav {
+        display: block !important;
+        background: transparent;
+        margin-top: 0;
+    }
+
+    .nav-list {
+        flex-direction: row;
+        display: flex;
+        gap: 30px;
+        padding: 0;
+    }
+
+    .nav-list li a {
+        border: none;
+        padding: 0;
+        font-size: 0.9rem;
+    }
+
+    /* Layout de Seções */
+    .f-desktop-row {
+        flex-direction: row !important;
+    }
+
+    .grid-areas {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .sobre-abordagem .container {
+        flex-direction: row;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .info-block,
+    .image-wrapper {
+        flex: 1;
+    }
+
+    .beneficios-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 380px 1fr;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .central-illustration {
+        order: 0;
+    }
+
+    /* Imagem no centro */
+
+    /* Contato Desktop */
+    .contato .container-narrow {
+        max-width: 1100px;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 50px;
+    }
+
+    .contact-info-cards-v2 {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* Telas Ultra-Wide */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1300px;
+    }
+}

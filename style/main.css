@@ -16,6 +16,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-body);
     background-color: var(--bg);
@@ -127,7 +131,7 @@ body {
     display: flex;
     align-items: center;
     background: linear-gradient(rgba(11, 83, 156, 0.85), rgba(30, 43, 56, 0.85)),
-        url('https://images.unsplash.com/photo-1579165466541-71ae2243e825?q=80&w=1000');
+        url('../ASSETS/IMG_6437_Original.webp') no-repeat;
     /* Exemplo placeholder */
     background-size: cover;
     background-position: center;
@@ -425,7 +429,7 @@ body {
     border-radius: 50px;
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--white);
     text-transform: uppercase;
 }
 
@@ -550,78 +554,668 @@ body {
     margin-top: 40px;
 }
 
+
+/* --- SEÇÃO DEPOIMENTOS --- */
+.depoimentos {
+    padding: 80px 0;
+    background-color: var(--primary);
+    /* Azul escuro das referências */
+    overflow: hidden;
+}
+
+.depoimentos .title-primary.light {
+    color: var(--white);
+    text-align: center;
+}
+
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    /* Esconde os cards que não estão em foco */
+    margin-top: 40px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1);
+    /* Transição suave */
+    width: 100%;
+}
+
+.testimonial-card {
+    flex: 0 0 100%;
+    /* Cada card ocupa exatamente a largura da tela */
+    padding: 40px 25px;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 280px;
+    box-sizing: border-box;
+}
+
+.testimonial-text {
+    color: var(--white);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.testimonial-footer {
+    margin-top: 25px;
+}
+
+.diamond {
+    color: var(--accent);
+    /* Dourado */
+    display: block;
+    margin-bottom: 10px;
+}
+
+.client-name {
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Dots */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 30px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.dot.active {
+    background: var(--accent);
+    transform: scale(1.4);
+}
+
 /* ==========================================================================
-   VERSÃO TABLET (2 Colunas com Imagem no Fundo)
+   SEÇÃO: COMO AGENDAR (TIMELINE VERTICAL)
    ========================================================================== */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .beneficios-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        /* 2 colunas */
-        gap: 25px;
-        position: relative;
+.agendamento {
+    padding: 80px 20px;
+    background-color: var(--bg-light);
+}
+
+.agendamento .section-title {
+    text-align: center;
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 50px;
+}
+
+.timeline {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Linha Vertical Conectora */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--primary);
+    opacity: 0.2;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 40px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 3px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background: var(--white);
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.timeline-content {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.step-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.timeline-content h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.timeline-content p {
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Botão CTA Final Agendamento */
+.cta-final-agendamento {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.btn-cta-gold {
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: var(--white);
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 10px 20px rgba(196, 140, 92, 0.3);
+    transition: transform 0.3s;
+}
+
+.btn-cta-gold:hover {
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   SEÇÃO CONTATO (NOVA ESTILIZAÇÃO - MOBILE FIRST)
+   ========================================================================== */
+.contato {
+    padding: 80px 0;
+    background-color: #1a2b3c;
+    /* Azul escuro da referência */
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.container-narrow {
+    max-width: 480px;
+    /* Estreita o conteúdo no celular */
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contact-title.light {
+    font-size: 2rem;
+    color: var(--white);
+    text-align: left;
+    /* Título à esquerda conforme referência */
+    margin-bottom: 20px;
+}
+
+/* Formulário V2 */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 18px;
+    border-radius: 8px;
+    border: none;
+    background: var(--white);
+    font-family: inherit;
+    color: #333;
+}
+
+/* Captcha V2 */
+.captcha-box-v2 {
+    background: var(--white);
+    padding: 12px 18px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #555;
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+
+.captcha-content-v2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Botão V2 (Gradiente Bronze) */
+.btn-submit-v2 {
+    background: linear-gradient(90deg, #c48c5c 0%, #a47444 100%);
+    /* Bronze Gradient conforme imagem */
+    color: var(--white);
+    border: none;
+    padding: 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(196, 140, 92, 0.2);
+}
+
+/* Cards de Informação V2 (Empilhados Verticalmente) */
+.contact-info-cards-v2 {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.info-card-v2 {
+    background: rgba(255, 255, 255, 0.05);
+    /* Fundo sutil */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Borda sutil */
+    padding: 25px;
+    border-radius: 20px;
+    /* Cantos mais arredondados */
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: transform 0.3s ease;
+}
+
+.info-card-v2:hover {
+    transform: scale(1.02);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.info-icon-v2 {
+    font-size: 1.8rem;
+    color: var(--white);
+    /* Ícone branco conforme imagem */
+    opacity: 0.8;
+}
+
+.info-text-v2 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-label-v2.light {
+    display: block;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.info-value-v2 {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* WhatsApp Flutuante V2 */
+.wa-float-v2 {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25D366;
+    /* Verde WhatsApp */
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    transition: transform 0.3s ease;
+}
+
+.wa-float-v2:hover {
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   FOOTER (RODAPÉ)
+   ========================================================================== */
+.footer-main {
+    background-color: #14212e;
+    padding: 40px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+}
+
+.footer-container strong {
+    color: var(--white);
+}
+
+
+/* ==========================================================================
+   VERSÃO TABLET (A partir de 768px)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .container {
+        padding: 0 40px;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
-    .central-illustration {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-        opacity: 0.15;
-        /* Efeito suave no fundo */
-        pointer-events: none;
+    /* Hero */
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .hero-description {
+        max-width: 500px;
+    }
+
+    /* Grid de Áreas (2 Colunas) */
+    .grid-areas {
+        gap: 30px;
+    }
+
+    .card-reveal {
+        flex: 1 1 calc(50% - 30px);
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+        padding: 60px 40px;
+    }
+
+    .cta-banner .btn-primary {
+        align-self: center;
+        width: auto;
+    }
+
+    /* Seção Sobre (Lado a Lado) */
+    .sobre-abordagem .container {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .info-block,
+    .image-wrapper {
+        flex: 1;
+    }
+
+    /* Benefícios */
+    .beneficios-wrapper {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
     }
 
     .beneficios-group {
-        z-index: 2;
+        flex: 1;
+    }
+
+    .central-illustration {
+        order: 2;
+        flex: 1;
+    }
+
+    /* Contato (2 Colunas) */
+    .container-narrow {
+        max-width: 90%;
+        flex-direction: row;
+        gap: 50px;
+        align-items: flex-start;
+    }
+
+    .contact-form,
+    .contact-info-cards-v2 {
+        flex: 1;
     }
 }
 
 /* ==========================================================================
-   VERSÃO DESKTOP (Grid Circular / Redor da Imagem)
+   VERSÃO DESKTOP (A partir de 1024px)
    ========================================================================== */
 @media (min-width: 1024px) {
-    .beneficios-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 400px 1fr;
-        /* Colunas para Cards Esq | Imagem | Cards Dir */
-        align-items: center;
+    .hamburguer-btn {
+        display: none;
+    }
+
+    .main-nav {
+        display: block !important;
+        flex-basis: auto;
+        background: transparent;
+        backdrop-filter: none;
+        border: none;
+        margin-top: 0;
+    }
+
+    .nav-list {
+        flex-direction: row;
         gap: 30px;
+        padding: 0;
     }
 
-    .central-illustration {
-        order: unset;
-        grid-column: 2;
-        grid-row: 1;
-        z-index: 1;
+    .nav-list li a {
+        padding: 10px 0;
+        border-bottom: 2px solid transparent;
+        transition: 0.3s;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
-    .group-top {
-        grid-column: 1;
+    .nav-list li a:hover {
+        color: var(--accent);
+        border-bottom: 2px solid var(--accent);
+    }
+
+    /* Hero Adjustment */
+    .hero-content {
+        max-width: 800px;
+    }
+
+    /* Grid de Áreas (3 Colunas) */
+    .card-reveal {
+        flex: 1 1 calc(33.333% - 30px);
+    }
+
+
+
+    .beneficios-wrapper {
+        flex-direction: row;
+        /* Alinha grupos e imagem horizontalmente */
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        position: relative;
+    }
+
+    /* Grupo da Esquerda (Cards 1, 2, 3, 4) */
+    .beneficios-group:nth-child(1) {
+        order: 1;
+        flex: 1;
         text-align: right;
+        /* Alinha o texto para a imagem */
     }
 
-    .group-bottom {
-        grid-column: 3;
+    /* Ilustração Central */
+    .central-illustration {
+        order: 2;
+        flex: 1.2;
+        /* Dá um pouco mais de destaque para a imagem central */
+        display: flex;
+        justify-content: center;
+        padding: 0;
     }
 
-    /* Inverte a ordem do ícone nos cards da esquerda para um visual premium */
-    .group-top .benefit-card {
-        flex-direction: row-reverse;
+    .central-illustration img {
+        max-width: 100%;
+        height: auto;
     }
 
+    /* Grupo da Direita (Cards 5, 6, 7, 8) */
+    .beneficios-group:nth-child(3) {
+        order: 3;
+        flex: 1;
+        text-align: left;
+        /* Alinha o texto para a imagem */
+    }
+
+    /* Ajuste dos Cards para o layout lado a lado */
     .benefit-card {
+        margin-bottom: 20px;
         transition: transform 0.3s ease;
+    }
+
+    /* Inverte a ordem do ícone nos cards da esquerda para "apontarem" para o centro */
+    .beneficios-group:nth-child(1) .benefit-card {
+        flex-direction: row-reverse;
     }
 
     .benefit-card:hover {
         transform: scale(1.05);
     }
+
+    .agendamento {
+        padding: 100px 0;
+    }
+
+    .timeline {
+        max-width: 1100px;
+        margin: 0 auto;
+        position: relative;
+        padding: 40px 0;
+    }
+
+    /* Linha Centralizada Vertical */
+    .timeline::before {
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0.15;
+    }
+
+    .timeline-item {
+        width: 45%;
+        /* Ocupa um pouco menos da metade para dar respiro */
+        margin-bottom: 0;
+        /* Reset do mobile */
+        padding-left: 0;
+        /* Reset do mobile */
+        clear: both;
+        /* Garante que um item não suba no outro */
+        position: relative;
+    }
+
+    /* Itens Ímpares (1, 3) -> Esquerda */
+    .timeline-item:nth-child(odd) {
+        float: left;
+        text-align: right;
+    }
+
+    /* Itens Pares (2, 4) -> Direita */
+    .timeline-item:nth-child(even) {
+        float: right;
+        text-align: left;
+        margin-top: 80px;
+        /* Cria o efeito de "escada" da imagem */
+    }
+
+    /* Posicionamento dos Dots na Linha Central */
+    .timeline-dot {
+        left: auto;
+        top: 20px;
+        z-index: 5;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-dot {
+        right: -11.5%;
+        /* Ajuste fino conforme o container */
+    }
+
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: -11.5%;
+    }
+
+    /* Ajuste dos Conteúdos */
+    .timeline-content {
+        display: inline-block;
+        width: 100%;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(0, 0, 0, 0.02);
+    }
+
+    /* Números de Passo (Italizados e Grandes) */
+    .step-number {
+        font-size: 3.5rem;
+        margin-bottom: 5px;
+        opacity: 0.8;
+    }
+
+    /* Ajuste do botão CTA final para limpar o float */
+    .cta-final-agendamento {
+        clear: both;
+        padding-top: 60px;
+    }
+
+    /* Depoimentos */
+    .testimonial-card {
+        padding: 60px 100px;
+    }
+
+    .testimonial-text {
+        font-size: 1.4rem;
+    }
+
+    /* Footer */
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
-
-
+.timeline::after {
+    content: "";
+    display: table;
+    clear: both;
+}
 
 
 
